@@ -1,8 +1,78 @@
+/*======================================
+=            CSS Overwrites            =
+======================================*/
+
+:root {
+  --red: #AA4353;
+  --green: #5DA9A7;
+  --bg-dark: #262A2E;
+  --bg-input-dark: #1A1D21;
+  --text: #454F5B;
+  --text-input: #96A6AD;
+  --boxshadow-input-active: rgba(86, 83, 136, .6);
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text) !important;
+}
+
+/*==============================
+=            Inputs            =
+==============================*/
+input,
+input[type="text"] {
+  background: var(--bg-input-dark);
+  border-color: var(--bg-input-dark);
+  color: var(--text-input);
+}
+
+input[type="text"]:focus {
+  border-color: var(--green);
+  color: var(--green);
+  box-shadow: 0 0 5px var(--boxshadow-input-active);
+}
+
+select.form-select {
+  background: var(--bg-input-dark) !important;
+  border-color: var(--bg-input-dark) !important;
+  color: var(--text-input) !important;
+}
+
+.radio input+div {
+  background: var(--bg-input-dark);
+  border-color: var(--bg-input-dark);
+}
+
+.radio input:checked+div,
+.radio:hover input:checked+div {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.radio:hover input+div {
+  border-color: var(--green);
+}
+
+.radio input+div:before {
+  background: var(--bg-input-dark);
+}
+
+label {
+  color: var(--text) !important;
+}
+
+/*===============================
+=            buttons            =
+===============================*/
+.btn {
+  background: transparent !important;
+  border: 1px solid var(--green) !important;
+}
+
 /* CSS declarations go here */
 header {
   position: relative;
-  background: #1a74d4;
-  background: linear-gradient(180deg,#1a74d4,#4ba7e2);
 }
 
   header .toolbar {
