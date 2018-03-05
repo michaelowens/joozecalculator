@@ -1,0 +1,34 @@
+/* CSS declarations go here */
+header {
+  position: relative;
+  background: #1a74d4;
+  background: linear-gradient(180deg,#1a74d4,#4ba7e2);
+}
+
+  header .toolbar {
+    padding: 25px 0;
+    position: relative;
+    color: #fff;
+  }
+
+  header .toolbar a {
+    color: #fff;
+  }
+
+  header .toolbar:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+
+  header .toolbar #login-dropdown-list a {
+    color: #1a74d4;
+  }
+
+  header .header-name {
+    float: left;
+  }
+
+  header .header-right {
+    float: right;
+  }
