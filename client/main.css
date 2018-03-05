@@ -40,22 +40,22 @@ select.form-select {
 }
 
 .radio input+div {
-  background: var(--bg-input-dark);
-  border-color: var(--bg-input-dark);
+  background: var(--bg-input-dark) !important;
+  border-color: var(--bg-input-dark) !important;
 }
 
 .radio input:checked+div,
 .radio:hover input:checked+div {
-  background: var(--green);
-  border-color: var(--green);
+  background: var(--green) !important;
+  border-color: var(--green) !important;
 }
 
 .radio:hover input+div {
-  border-color: var(--green);
+  border-color: var(--green) !important;
 }
 
 .radio input+div:before {
-  background: var(--bg-input-dark);
+  background: var(--bg-input-dark) !important;
 }
 
 label {
