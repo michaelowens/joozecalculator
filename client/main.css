@@ -8,7 +8,7 @@
   --green: #5DA9A7;
   --bg-dark: #262A2E;
   --bg-input-dark: #1A1D21;
-  --text: #5F6975;
+  --text: #79828E;
   --text-input: #96A6AD;
   --boxshadow-input-active: rgba(86, 83, 136, .6);
 }
@@ -20,6 +20,10 @@ body {
 
 .mt-10 {
   margin-top: 10px !important;
+}
+
+.green {
+  color: var(--green);
 }
 
 p.bold {
@@ -91,12 +95,29 @@ label {
   color: var(--text) !important;
 }
 
+.form-group>span {
+  background: var(--bg-dark) !important;
+  border: 1px solid var(--bg-input-dark) !important;
+  z-index: 10;
+}
+
+.form-group.focus>span {
+  background: var(--green) !important;
+  border-color: var(--green) !important;
+}
+
 /*===============================
 =            buttons            =
 ===============================*/
 .btn {
-  background: transparent !important;
+  background: var(--green) !important;
   border: 1px solid var(--green) !important;
+  transition: background .2s;
+}
+
+.btn:hover {
+  background: transparent !important;
+  transition: background .2s;
 }
 
 /*===================================
@@ -139,7 +160,7 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
-    border: 1px solid var(--text);
+    border: 1px solid var(--bg-input-dark);
 }
 
 th, td {
@@ -148,7 +169,7 @@ th, td {
 }
 
 th {
-  font-weight: bolder;
+  font-weight: bolder !important;
 }
 
 table td a {

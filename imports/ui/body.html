@@ -71,12 +71,12 @@
 
             <div class="radios">
               <label>Nicotine strength in</label>
-              <label class="radio inline fancy">
+              <label class="radio inline">
                 <input type="radio" name="radio2" value="1" checked>
                 <div></div>
                 <span>Weight (mg/ml)</span>
               </label>
-              <label class="radio inline fancy mt-10">
+              <label class="radio inline mt-10">
                 <input type="radio" name="radio2" value="2">
                 <div></div>
                 <span>Volume (%)</span>
@@ -94,7 +94,10 @@
 
           <div class="sm-12">
             <label for="nicotinestr">Nicotine base strength</label>
-            <input type="number" class="form-field" value="18" id="nicotinestr">
+            <div class="form-group">
+              <input type="number" class="form-field" value="18" id="nicotinestr">
+              <span>mg/ml</span>
+            </div>
           </div>
         </div>
 
@@ -105,12 +108,16 @@
 
           <div class="columns">
             <div class="sm-6">
-              <em>PG</em>
-              <input type="text" value="50%" class="form-field" id="pg" name="pg">
+              <div class="form-group">
+                <input type="text" value="50%" class="form-field" id="pg" name="pg">
+                <span>% PG</span>
+              </div>
             </div>
             <div class="sm-6">
-              <em>VG</em>
-              <input type="text" value="50%"  class="form-field" id="vg" name="vg">
+              <div class="form-group">
+                <input type="text" value="50%" class="form-field" id="vg" name="vg">
+                <span>% VG</span>
+              </div>
             </div>
           </div>
         </div>
@@ -123,7 +130,10 @@
           </div>
           <div class="sm-12">
             <label for="nicotinestrtotal">Nicotine strength</label>
-            <input type="number" class="form-field" value="6" id="nicotinestr">
+            <div class="form-group">
+              <input type="number" class="form-field" value="6" id="nicotinestr">
+              <span>mg/ml</span>
+            </div>
           </div>
         </div>
 
@@ -134,35 +144,67 @@
 
           <div class="columns">
             <div class="sm-6">
-              <em>PG</em>
-              <input type="text" value="50%" class="form-field" id="bpg" name="bpg">
+              <div class="form-group">
+                <input type="text" value="50%" class="form-field" id="bpg" name="bpg">
+                <span>% PG</span>
+              </div>
             </div>
             <div class="sm-6">
-              <em>VG</em>
-              <input type="text" value="50%"  class="form-field" id="bvg" name="bvg">
+              <div class="form-group">
+                <input type="text" value="50%"  class="form-field" id="bvg" name="bvg">
+                <span>% VG</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="lg-3">
         <p class="bold">Recipe outcome</p>
+        <table>
+          <tr>
+            <th>Add</th>
+            <th>ml</th>
+            <th>g</th>
+          </tr>
+          <tr>
+            <td>Nicotine</td>
+            <td>0.5</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>PG</td>
+            <td>3.5</td>
+            <td>5.31</td>
+          </tr>
+          <tr>
+            <td>Nicotine</td>
+            <td>5</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>Flavourname</td>
+            <td>1</td>
+            <td>1.1</td>
+          </tr>
+          <tr>
+            <td class="green"><strong>SUM</strong></td>
+            <td class="green"><strong>10</strong></td>
+            <td class="green"><strong>11.03</strong></td>
+          </tr>
+        </table>
+
+        {{#if currentUser}}
+          <input type="submit" class="btn mt-10" value="Add Recipe">
+        {{/if}}
+
       </div>
     </div>
-
-    {{#if currentUser}}
-      <div class="columns">
-        <div class="sm-9 sm-offset-3">
-          <input type="submit" class="btn" value="Add Recipe">
-        </div>
-      </div>
-    {{/if}}
   </form>
 </template>
 
 <template name="recipebook">
   <div class="columns" style="padding-top: 20px;">
-    <div class="lg-3">&nbsp;</div>
-    <div class="lg-6">
+    <div class="lg-6 sm-offset-3">
       <table>
         <tr>
           <th colspan="2">Your recipes</th>
@@ -172,6 +214,5 @@
         {{/each}}
       </table>
     </div>
-    <div class="lg-3">&nbsp;</div>
   </div>
 </template>
