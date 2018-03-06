@@ -1,7 +1,6 @@
 /*======================================
 =            CSS Overwrites            =
 ======================================*/
-
 :root {
   --white: #FFFFFF;
   --red: #AA4353;
@@ -258,3 +257,23 @@ header {
   em {
     font-size: 13px;
   }
+
+@media screen and (max-width: 864px) {
+  body {
+    padding: 0 20px !important;
+  }
+
+  .columns .lg-3 {
+    max-width: 100% !important;
+    margin: 0 0 50px 0!important;
+  }
+
+  .sm-6 .form-group {
+    margin-bottom: 10px;
+  }
+
+  .lg-6.sm-offset-3 {
+    padding: 0 !important;
+    margin-bottom: 50px;
+  }
+}
