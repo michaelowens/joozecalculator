@@ -106,9 +106,50 @@ label {
   transition: background .2s;
 }
 
+/*==============================
+=            Tables            =
+==============================*/
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid var(--text);
+}
+
+th, td {
+    text-align: left;
+    padding: 16px;
+}
+
+th {
+  font-weight: bolder;
+}
+
+table td a {
+  color: var(--text);
+  text-decoration: underline;
+  transition: color .2s;
+}
+
+table td a:hover {
+  color: var(--green);
+  text-decoration: underline;
+  transition: color .2s;
+}
+
+tr:nth-child(even) {
+    background-color: var(--bg-input-dark);
+}
+
 
 
 /* CSS declarations go here */
+.columns {
+  max-width: 1440px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
 header {
   position: relative;
 }

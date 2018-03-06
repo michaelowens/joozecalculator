@@ -3,21 +3,21 @@
   {{> hello}}
 
   <div class="columns">
-    <div class="lg-4">
-      asd
+    <div class="lg-3">
+      Batch to make
     </div>
-    <div class="lg-4">
+    <div class="lg-3">
       {{> recipeform}}
     </div>
-    <div class="lg-4">
-      <p>Your Recipes:</p>
-      <ul>
-        {{#each recipes}}
-          {{> recipe}}
-        {{/each}}
-      </ul>
+    <div class="lg-3">
+      What you aiming for
+    </div>
+    <div class="lg-3">
+      Recipe
     </div>
   </div>
+
+  {{> recipebook}}
 </body>
 
 <template name="header">
@@ -37,8 +37,6 @@
 </template>
 
 <template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
 </template>
 
 <template name="ingredient">
@@ -46,7 +44,10 @@
 </template>
 
 <template name="recipe">
-  <li>Name: {{name}}</li>
+  <tr>
+    <td>{{name}}</td>
+    <td style="text-align: right;"><a href="#">load recipe</a> &nbsp; <a href="#" class="delete">remove</a></td>
+  </tr>
 </template>
 
 <template name="recipeform">
@@ -54,7 +55,7 @@
     <div class="form-element">
       <div class="sm-12">
         <label for="nameh">Name</label>
-        <input type="text" name="name" class="form-field" id="nameh">
+        <input type="text" name="name" class="form-field {{checkError 'name'}}" id="nameh">
       </div>
     </div>
     <div class="form-element">
@@ -107,4 +108,21 @@
       </div>
     {{/if}}
   </form>
+</template>
+
+<template name="recipebook">
+  <div class="columns" style="padding-top: 20px;">
+    <div class="lg-3">&nbsp;</div>
+    <div class="lg-6">
+      <table>
+        <tr>
+          <th colspan="2">Your recipes</th>
+        </tr>
+        {{#each recipes}}
+          {{> recipe}}
+        {{/each}}
+      </table>
+    </div>
+    <div class="lg-3">&nbsp;</div>
+  </div>
 </template>
