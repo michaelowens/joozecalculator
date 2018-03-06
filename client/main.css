@@ -3,6 +3,7 @@
 ======================================*/
 
 :root {
+  --white: #FFFFFF;
   --red: #AA4353;
   --green: #5DA9A7;
   --bg-dark: #262A2E;
@@ -25,6 +26,7 @@ input[type="text"] {
   background: var(--bg-input-dark);
   border-color: var(--bg-input-dark);
   color: var(--text-input);
+  padding: 6px 10px;
 }
 
 input[type="text"]:focus {
@@ -37,6 +39,7 @@ select.form-select {
   background: var(--bg-input-dark) !important;
   border-color: var(--bg-input-dark) !important;
   color: var(--text-input) !important;
+  padding: 6px 10px !important;
 }
 
 .radio input+div {
@@ -74,15 +77,25 @@ label {
 header {
   position: relative;
 }
+  header .container .columns .lg-12 {
+    text-align: center;
+  }
+
+  header .container .columns .lg-12 img {
+    margin: 0 auto;
+    display: block;
+  }
 
   header .toolbar {
-    padding: 25px 0;
-    position: relative;
-    color: #fff;
+    position: absolute;
+    top: 20px;
+    right: 200px;
+    color: var(--white);
   }
 
   header .toolbar a {
-    color: #fff;
+    color: var(--text);
+    text-decoration: none !important;
   }
 
   header .toolbar:after {
@@ -92,7 +105,7 @@ header {
   }
 
   header .toolbar #login-dropdown-list a {
-    color: #1a74d4;
+    color: var(--green);
   }
 
   header .header-name {

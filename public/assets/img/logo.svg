@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="260px" height="193px" viewBox="0 0 260 193" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="14.2730496%" y1="10.5215887%" x2="81.022828%" y2="91.1894278%" id="linearGradient-1">
+            <stop stop-color="#6BB6C4" offset="0%"></stop>
+            <stop stop-color="#8091C6" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#262A2E" offset="0%"></stop>
+            <stop stop-color="#262A2E" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="10.9400202%" y1="10.0242457%" x2="79.4657258%" y2="87.8475216%" id="linearGradient-3">
+            <stop stop-color="#6BB6C4" offset="0%"></stop>
+            <stop stop-color="#8091C6" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="41.0224781%" y1="50%" x2="86.6159539%" y2="126.62056%" id="linearGradient-4">
+            <stop stop-color="#6BB6C4" offset="0%"></stop>
+            <stop stop-color="#8091C6" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-347.475962%" y1="326.5625%" x2="0%" y2="100%" id="linearGradient-5">
+            <stop stop-color="#6BB6C4" offset="0%"></stop>
+            <stop stop-color="#8091C6" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(4.000000, 2.000000)">
+            <path d="M53.800364,38.2279904 L57.245282,47.2023085 C61.5382858,46.3856341 65.969231,45.9582381 70.5,45.9582381 C109.436075,45.9582381 141,77.5221632 141,116.458238 C141,155.394313 109.436075,186.958238 70.5,186.958238 C31.5639251,186.958238 0,155.394313 0,116.458238 C0,89.5522986 15.0724201,66.1667114 37.2344516,54.2842853 L33.9900926,45.8324411 L29.2181653,47.6642124 C25.0933474,49.2475816 20.4659475,47.1873304 18.8825783,43.0625126 L17.8074744,40.2617713 C16.2241052,36.1369534 18.2843564,31.5095535 22.4091742,29.9261843 L49.4830066,19.5335138 C53.6078245,17.9501445 58.2352244,20.0103957 59.8185936,24.1352136 L60.8936975,26.9359548 C62.4770667,31.0607727 60.4168155,35.6881726 56.2919976,37.2715419 L53.800364,38.2279904 Z" id="Combined-Shape" stroke="url(#linearGradient-1)" stroke-width="8"></path>
+            <path d="M190.187371,127.721244 C187.085907,134.38249 180.332192,139 172.5,139 C171.917179,139 171.34033,138.974431 170.770514,138.924354 C165.678046,142.739873 159.352963,145 152.5,145 C143.185305,145 134.845861,140.824455 129.251352,134.243048 L103.468287,133.988767 L122.463077,109.175996 C124.257494,98.9827326 131.113844,90.5342112 140.343774,86.5187817 C140.118251,85.3807925 140,84.2042058 140,83 C140,77.273369 142.674248,72.1713421 146.842037,68.8746261 C142.269941,65.5875399 138.457745,61.3099764 135.71953,56.3560155 C132.031859,58.6651389 127.671816,60 123,60 C109.745166,60 99,49.254834 99,36 C99,22.745166 109.745166,12 123,12 C124.276901,12 125.530512,12.0997193 126.753469,12.2917951 C130.389718,9.00298461 135.210948,7 140.5,7 C142.40601,7 144.251266,7.26011912 146.002205,7.74679462 C152.386768,2.8859271 160.356362,0 169,0 C183.883839,0 196.769081,8.55701177 203.004503,21.019812 C212.9278,21.4119391 221.364364,27.5881646 225.03596,36.270253 C242.108641,43.9294338 254,61.076029 254,81 C254,108.061953 232.061953,130 205,130 C199.837036,130 194.860573,129.201495 190.187371,127.721244 Z" id="Combined-Shape" stroke="url(#linearGradient-3)" stroke-width="3" fill="url(#linearGradient-2)"></path>
+            <path d="M49,148 C72.6666667,156 91.6666667,150.333333 106,131" id="Path-3" stroke="url(#linearGradient-4)" stroke-width="4"></path>
+            <path d="M96,89 L83,97" id="Line" stroke="url(#linearGradient-5)" stroke-width="4" stroke-linecap="square"></path>
+            <path d="M43.6438127,112.31375 L29.3561873,117.68625" id="Line" stroke="url(#linearGradient-5)" stroke-width="4" stroke-linecap="square"></path>
+        </g>
+    </g>
+</svg>

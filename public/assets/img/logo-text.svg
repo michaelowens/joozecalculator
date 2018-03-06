@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="338px" height="46px" viewBox="0 0 338 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>JoozeCalculator</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="34.4411058%" x2="104.856419%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#6BB6C4" offset="0%"></stop>
+            <stop stop-color="#6BB6C4" offset="20.9174939%"></stop>
+            <stop stop-color="#8091C6" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="LeviReBrushed" font-size="48" font-weight="normal">
+        <text id="JoozeCalculator" fill="url(#linearGradient-1)">
+            <tspan x="3" y="36">JoozeCalculator</tspan>
+        </text>
+    </g>
+</svg>
