@@ -6,6 +6,7 @@
   --white: #FFFFFF;
   --red: #AA4353;
   --green: #5DA9A7;
+  --purple: #7C98C6;
   --bg-dark: #262A2E;
   --bg-input-dark: #1A1D21;
   --text: #79828E;
@@ -28,6 +29,7 @@ body {
 
 p.bold {
   font-weight: bolder;
+  color: var(--purple);
 }
 
 /*==============================
@@ -114,12 +116,13 @@ label {
 .btn {
   background: var(--green) !important;
   border: 1px solid var(--green) !important;
-  transition: background .2s;
+  transition: background .2s color .2s;
 }
 
 .btn:hover {
   background: transparent !important;
-  transition: background .2s;
+  color: var(--green);
+  transition: background .2s color .2s;
 }
 
 /*===================================
