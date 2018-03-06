@@ -114,6 +114,7 @@ header {
 }
   header .container .columns .lg-12 {
     text-align: center;
+    padding-top: 20px;
   }
 
   header .container .columns .lg-12 img {
