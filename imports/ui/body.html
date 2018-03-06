@@ -2,22 +2,7 @@
   {{> header}}
   {{> hello}}
 
-  <div class="columns">
-    <div class="lg-3">
-      <div class="form-element">
-        {{> recipeform}}
-      </div>
-    </div>
-    <div class="lg-3">
-      Nicotine &amp; Flavoring
-    </div>
-    <div class="lg-3">
-      What you aiming for
-    </div>
-    <div class="lg-3">
-      Recipe
-    </div>
-  </div>
+  {{> recipeform}}
 
   {{> recipebook}}
 </body>
@@ -54,41 +39,113 @@
 
 <template name="recipeform">
   <form class="horizontal new-recipe">
-    <div class="form-element">
-      <div class="sm-12">
-        <label for="nameh">Recipe name</label>
-        <input type="text" name="name" class="form-field {{checkError 'name'}}" id="nameh">
-      </div>
-    </div>
-    <div class="form-element">
-      <div class="sm-12">
-        <label>Public recipe</label>
-        <label class="switch inline">
-          <input name="public" type="checkbox">
-          <div></div> &nbsp;
-          <em>Activating this makes your recipe public</em>
-        </label>
-      </div>
-    </div>
-    <div class="form-element">
-      <div class="sm-12">
-        <label for="batch">Batch</label>
-        <input type="number" class="form-field" name="batch" id="batch" value="10">
-        <em>The total amount of liquid you want to make</em>
+    <div class="columns">
+      <div class="lg-3">
+        <div class="form-element">
+          <div class="sm-12">
+            <p class="bold">Create your recipe</p>
+          </div>
 
-        <div class="radios">
-          <label>Nicotine strength in</label>
-          <label class="radio inline fancy">
-            <input type="radio" name="radio2" value="1" checked>
-            <div></div>
-            <span>Weight (mg/ml)</span>
-          </label>
-          <label class="radio inline fancy mt-10">
-            <input type="radio" name="radio2" value="2">
-            <div></div>
-            <span>Volume (%)</span>
-          </label>
+          <div class="sm-12">
+            <label for="nameh">Recipe name</label>
+            <input type="text" name="name" class="form-field {{checkError 'name'}}" id="nameh">
+          </div>
         </div>
+
+        <div class="form-element">
+          <div class="sm-12">
+            <label>Public recipe</label>
+            <label class="switch inline">
+              <input name="public" type="checkbox">
+              <div></div> &nbsp;
+              <em>Activating this makes your recipe public</em>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-element">
+          <div class="sm-12">
+            <label for="batch">Batch</label>
+            <input type="number" class="form-field" name="batch" id="batch" value="10">
+            <em>The total amount of liquid you want to make</em>
+
+            <div class="radios">
+              <label>Nicotine strength in</label>
+              <label class="radio inline fancy">
+                <input type="radio" name="radio2" value="1" checked>
+                <div></div>
+                <span>Weight (mg/ml)</span>
+              </label>
+              <label class="radio inline fancy mt-10">
+                <input type="radio" name="radio2" value="2">
+                <div></div>
+                <span>Volume (%)</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg-3">
+        <div class="form-element">
+          <div class="sm-12">
+            <p class="bold">Nicotine &amp; Flavoring</p>
+          </div>
+
+          <div class="sm-12">
+            <label for="nicotinestr">Nicotine base strength</label>
+            <input type="number" class="form-field" value="18" id="nicotinestr">
+          </div>
+        </div>
+
+        <div class="form-element">
+          <div class="sm-12">
+            <label for="">Nicotine pg/vg ratio</label>
+          </div>
+
+          <div class="columns">
+            <div class="sm-6">
+              <em>PG</em>
+              <input type="text" value="50%" class="form-field" id="pg" name="pg">
+            </div>
+            <div class="sm-6">
+              <em>VG</em>
+              <input type="text" value="50%"  class="form-field" id="vg" name="vg">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg-3">
+        <div class="form-element">
+          <div class="sm-12">
+            <p class="bold">What you're aiming for</p>
+          </div>
+          <div class="sm-12">
+            <label for="nicotinestrtotal">Nicotine strength</label>
+            <input type="number" class="form-field" value="6" id="nicotinestr">
+          </div>
+        </div>
+
+        <div class="form-element">
+          <div class="sm-12">
+            <label for="">Batch pg/vg ratio</label>
+          </div>
+
+          <div class="columns">
+            <div class="sm-6">
+              <em>PG</em>
+              <input type="text" value="50%" class="form-field" id="bpg" name="bpg">
+            </div>
+            <div class="sm-6">
+              <em>VG</em>
+              <input type="text" value="50%"  class="form-field" id="bvg" name="bvg">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lg-3">
+        <p class="bold">Recipe outcome</p>
       </div>
     </div>
 

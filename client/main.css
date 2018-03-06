@@ -22,6 +22,10 @@ body {
   margin-top: 10px !important;
 }
 
+p.bold {
+  font-weight: bolder;
+}
+
 /*==============================
 =            Inputs            =
 ==============================*/
@@ -174,7 +178,9 @@ tr:nth-child(even) {
 
 header {
   position: relative;
+  margin-bottom: 50px;
 }
+
   header .container .columns .lg-12 {
     text-align: center;
     padding-top: 20px;
