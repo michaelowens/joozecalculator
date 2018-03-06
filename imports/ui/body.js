@@ -2,23 +2,21 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
 import { Recipes } from '../api/recipes.js';
-import { Ingredients } from '../api/ingredients.js';
  
 import './body.html';
 
-Template.formtest.helpers({
+Template.recipeform.helpers({
   recipes() {
-    console.log(this.userId)
     return Recipes.find({
       $or: [
-        { private: { $ne: true } },
+        // { private: { $ne: true } },
         { owner: Meteor.userId() },
       ],
     });
   },
 });
 
-Template.formtest.events({
+Template.recipeform.events({
   'submit .new-recipe'(event) {
     // Prevent default browser form submit
     event.preventDefault();
