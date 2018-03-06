@@ -199,6 +199,14 @@ tr:nth-child(even) {
   margin: 0 auto !important;
 }
 
+.columns .lg-3 {
+  max-width: calc(25% - 20px) !important;
+  border: 1px solid var(--bg-input-dark);
+  border-radius: 4px;
+  padding: 15px !important;
+  margin: 0 10px !important;
+}
+
 header {
   position: relative;
   margin-bottom: 50px;
