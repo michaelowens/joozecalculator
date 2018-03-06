@@ -39,7 +39,7 @@ input[type="number"] {
   background: var(--bg-input-dark);
   border-color: var(--bg-input-dark);
   color: var(--text-input);
-  padding: 6px 10px;
+  padding: 6px 10px !important;
 }
 
 input[type="text"]:focus,
@@ -98,12 +98,14 @@ label {
 .form-group>span {
   background: var(--bg-dark) !important;
   border: 1px solid var(--bg-input-dark) !important;
+  padding: 6px 10px !important;
   z-index: 10;
 }
 
-.form-group.focus>span {
+.form-group input:focus+span {
   background: var(--green) !important;
   border-color: var(--green) !important;
+  color: var(--white) !important;
 }
 
 /*===============================
