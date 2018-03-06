@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 
-import '../imports/api/ingredients.js';
 import '../imports/api/recipes.js';
 
 Meteor.startup(() => {

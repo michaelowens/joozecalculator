@@ -1,9 +1,23 @@
 <body>
   {{> header}}
-  <h1>Welcome to Meteor!</h1>
-
   {{> hello}}
-  {{> formtest}}
+
+  <div class="columns">
+    <div class="lg-4">
+      asd
+    </div>
+    <div class="lg-4">
+      {{> recipeform}}
+    </div>
+    <div class="lg-4">
+      <p>Your Recipes:</p>
+      <ul>
+        {{#each recipes}}
+          {{> recipe}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
 </body>
 
 <template name="header">
@@ -24,80 +38,70 @@
   <p>You've pressed the button {{counter}} times.</p>
 </template>
 
+<template name="ingredient">
+  <li>Name: {{name}}</li>
+</template>
+
 <template name="recipe">
   <li>Name: {{name}}</li>
 </template>
 
-<template name="formtest">
-  <div class="columns">
-    <div class="lg-4">
-      <p>Your recipes:</p>
-      <ul>
-        {{#each recipes}}
-          {{> recipe}}
-        {{/each}}
-      </ul>
+<template name="recipeform">
+  <form class="horizontal new-recipe">
+    <div class="form-element">
+      <label for="nameh" class="sm-3">Name</label>
+      <div class="sm-9">
+        <input type="text" name="name" class="form-field" id="nameh">
+      </div>
+    </div>
+    <div class="form-element">
+      <label class="sm-3">Public recipe</label>
+      <div class="sm-9">
+        <label class="switch inline">
+          <input name="public" type="checkbox">
+          <div></div>
+          <span>By activating this anyone will be able to see your recipe</span>
+        </label>
+      </div>
+    </div>
+    <div class="form-element">
+      <label class="sm-3">Radios</label>
+      <div class="sm-9">
+        <label class="radio inline">
+          <input type="radio" name="radio2" value="1" checked>
+          <div></div>
+          <span>Inline 1</span>
+        </label>
+        <label class="radio inline fancy">
+          <input type="radio" name="radio2" value="2" checked>
+          <div></div>
+          <span>Inline 2 Fancy</span>
+        </label>
+      </div>
+    </div>
+    <div class="form-element">
+      <label class="sm-3">Text</label>
+      <div class="sm-9">
+        <textarea class="form-field"></textarea>
+      </div>
+    </div>
+    <div class="form-element">
+      <label class="sm-3">Select</label>
+      <div class="sm-9">
+        <select class="form-select">
+          <option>Option #1</option>
+          <option>Option #2</option>
+          <option>Option #3</option>
+        </select>
+      </div>
     </div>
 
-    <div class="lg-4">
-      <form class="horizontal new-recipe">
-        <div class="form-element">
-          <label for="nameh" class="sm-3">Name</label>
-          <div class="sm-9">
-            <input type="text" name="name" class="form-field" id="nameh">
-          </div>
+    {{#if currentUser}}
+      <div class="columns">
+        <div class="sm-9 sm-offset-3">
+          <input type="submit" class="btn" value="Add Recipe">
         </div>
-        <div class="form-element">
-          <label class="sm-3">Public recipe</label>
-          <div class="sm-9">
-            <label class="switch inline">
-              <input name="public" type="checkbox">
-              <div></div>
-              <span>By activating this anyone will be able to see your recipe</span>
-            </label>
-          </div>
-        </div>
-        <div class="form-element">
-          <label class="sm-3">Radios</label>
-          <div class="sm-9">
-            <label class="radio inline">
-              <input type="radio" name="radio2" value="1" checked>
-              <div></div>
-              <span>Inline 1</span>
-            </label>
-            <label class="radio inline fancy">
-              <input type="radio" name="radio2" value="2" checked>
-              <div></div>
-              <span>Inline 2 Fancy</span>
-            </label>
-          </div>
-        </div>
-        <div class="form-element">
-          <label class="sm-3">Text</label>
-          <div class="sm-9">
-            <textarea class="form-field"></textarea>
-          </div>
-        </div>
-        <div class="form-element">
-          <label class="sm-3">Select</label>
-          <div class="sm-9">
-            <select class="form-select">
-              <option>Option #1</option>
-              <option>Option #2</option>
-              <option>Option #3</option>
-            </select>
-          </div>
-        </div>
-
-        {{#if currentUser}}
-          <div class="columns">
-            <div class="sm-9 sm-offset-3">
-              <input type="submit" class="btn" value="Add Recipe">
-            </div>
-          </div>
-        {{/if}}
-      </form>
-    </div>
-    <div class="lg-4"><span>lg-4</span></div>
-  </div>
+      </div>
+    {{/if}}
+  </form>
 </template>
