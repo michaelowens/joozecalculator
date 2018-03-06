@@ -10,7 +10,6 @@ let formErrors = new ReactiveVar([]);
 
 Template.recipeform.helpers({
   checkError(field) {
-    console.log(field)
     return formErrors.get().includes(field) && 'error'
   }
 });

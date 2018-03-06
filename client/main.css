@@ -8,7 +8,7 @@
   --green: #5DA9A7;
   --bg-dark: #262A2E;
   --bg-input-dark: #1A1D21;
-  --text: #454F5B;
+  --text: #5F6975;
   --text-input: #96A6AD;
   --boxshadow-input-active: rgba(86, 83, 136, .6);
 }
@@ -18,18 +18,24 @@ body {
   color: var(--text) !important;
 }
 
+.mt-10 {
+  margin-top: 10px !important;
+}
+
 /*==============================
 =            Inputs            =
 ==============================*/
 input,
-input[type="text"] {
+input[type="text"],
+input[type="number"] {
   background: var(--bg-input-dark);
   border-color: var(--bg-input-dark);
   color: var(--text-input);
   padding: 6px 10px;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="number"]:focus {
   border-color: var(--green);
   color: var(--green);
   box-shadow: 0 0 5px var(--boxshadow-input-active);
@@ -40,6 +46,22 @@ select.form-select {
   border-color: var(--bg-input-dark) !important;
   color: var(--text-input) !important;
   padding: 6px 10px !important;
+}
+
+.radios {
+  margin-top: 20px;
+}
+
+.radios label.radio {
+  display: block;
+}
+
+.radio span {
+  font-size: 13px;
+}
+
+.radio.inline {
+  padding-top: 0 !important;
 }
 
 .radio input+div {
@@ -191,4 +213,8 @@ header {
 
   header .header-right {
     float: right;
+  }
+
+  em {
+    font-size: 13px;
   }

@@ -4,10 +4,12 @@
 
   <div class="columns">
     <div class="lg-3">
-      Batch to make
+      <div class="form-element">
+        {{> recipeform}}
+      </div>
     </div>
     <div class="lg-3">
-      {{> recipeform}}
+      Nicotine &amp; Flavoring
     </div>
     <div class="lg-3">
       What you aiming for
@@ -54,7 +56,7 @@
   <form class="horizontal new-recipe">
     <div class="form-element">
       <div class="sm-12">
-        <label for="nameh">Name</label>
+        <label for="nameh">Recipe name</label>
         <input type="text" name="name" class="form-field {{checkError 'name'}}" id="nameh">
       </div>
     </div>
@@ -63,40 +65,30 @@
         <label>Public recipe</label>
         <label class="switch inline">
           <input name="public" type="checkbox">
-          <div></div>
-          <span>By activating this anyone will be able to see your recipe</span>
+          <div></div> &nbsp;
+          <em>Activating this makes your recipe public</em>
         </label>
       </div>
     </div>
     <div class="form-element">
       <div class="sm-12">
-        <label>Radios</label>
-        <label class="radio inline">
-          <input type="radio" name="radio2" value="1" checked>
-          <div></div>
-          <span>Inline 1</span>
-        </label>
-        <label class="radio inline fancy">
-          <input type="radio" name="radio2" value="2" checked>
-          <div></div>
-          <span>Inline 2 Fancy</span>
-        </label>
-      </div>
-    </div>
-    <div class="form-element">
-      <div class="sm-12">
-        <label>Text</label>
-        <textarea class="form-field"></textarea>
-      </div>
-    </div>
-    <div class="form-element">
-      <div class="sm-12">
-        <label>Select</label>
-        <select class="form-select">
-          <option>Option #1</option>
-          <option>Option #2</option>
-          <option>Option #3</option>
-        </select>
+        <label for="batch">Batch</label>
+        <input type="number" class="form-field" name="batch" id="batch" value="10">
+        <em>The total amount of liquid you want to make</em>
+
+        <div class="radios">
+          <label>Nicotine strength in</label>
+          <label class="radio inline fancy">
+            <input type="radio" name="radio2" value="1" checked>
+            <div></div>
+            <span>Weight (mg/ml)</span>
+          </label>
+          <label class="radio inline fancy mt-10">
+            <input type="radio" name="radio2" value="2">
+            <div></div>
+            <span>Volume (%)</span>
+          </label>
+        </div>
       </div>
     </div>
 
