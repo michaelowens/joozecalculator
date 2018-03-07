@@ -36,16 +36,18 @@
       <div class="lg-3">
         <div class="form-element">
           <div class="sm-12">
-            <p class="bold">Create your recipe</p>
+            <span class="bold">Create your recipe</span>
           </div>
+        </div>
 
+        <div class="form-element">
           <div class="sm-12">
             <label for="nameh">Recipe name</label>
             <input type="text" name="name" class="form-field {{checkError 'name'}} recipename" id="nameh" placeholder="Fizzy Shizzy placeholder" value="{{state.get 'name'}}">
           </div>
         </div>
 
-        <div class="form-element">
+<!--         <div class="form-element">
           <div class="sm-12">
             <label>Public recipe</label>
             <label class="switch inline">
@@ -54,7 +56,7 @@
               <em>Activating this makes your recipe public</em>
             </label>
           </div>
-        </div>
+        </div> -->
 
         <div class="form-element">
           <div class="sm-12">
@@ -85,9 +87,21 @@
       <div class="lg-3">
         <div class="form-element">
           <div class="sm-12">
-            <p class="bold">Nicotine &amp; Flavoring</p>
+            <span class="bold">Nicotine &amp; Flavoring</span>
           </div>
+        </div>
 
+        <div class="form-element">
+          <div class="sm-12">
+            <label class="switch inline">
+              <input name="public" type="checkbox" class="withNicotine">
+              <div></div> &nbsp;
+              <em>Mix your batch with nicotine?</em>
+            </label>
+          </div>
+        </div>
+    {{#if showNicotine}}
+        <div class="form-element">
           <div class="sm-12">
             <label for="nicotinestr">Nicotine base strength</label>
             <div class="form-group">
@@ -117,21 +131,27 @@
             </div>
           </div>
         </div>
+      {{/if}}
       </div>
 
       <div class="lg-3">
         <div class="form-element">
           <div class="sm-12">
-            <p class="bold">What you're aiming for</p>
-          </div>
-          <div class="sm-12">
-            <label for="nicotinestrtotal">Nicotine strength</label>
-            <div class="form-group">
-              <input type="number" step="any" class="form-field aimnicotinestr" id="nicotinestr2" value="{{state.get 'aimnicotinestr'}}" style="text-align: right;">
-              <span>{{ nicotineUnits }}</span>
-            </div>
+            <span class="bold">What you're aiming for</span>
           </div>
         </div>
+
+        {{#if showNicotine}}
+          <div class="form-element">
+            <div class="sm-12">
+              <label for="nicotinestrtotal">Nicotine strength</label>
+              <div class="form-group">
+                <input type="number" step="any" class="form-field aimnicotinestr" id="nicotinestr2" value="{{state.get 'aimnicotinestr'}}" style="text-align: right;">
+                <span>{{ nicotineUnits }}</span>
+              </div>
+            </div>
+          </div>
+        {{/if}}
 
         <div class="form-element">
           <div class="sm-12">
@@ -155,7 +175,7 @@
         </div>
       </div>
       <div class="lg-3">
-        <p class="bold">Recipe outcome</p>
+        <span class="bold">Recipe outcome</span>
         <table>
           <tr>
             <th>Add</th>

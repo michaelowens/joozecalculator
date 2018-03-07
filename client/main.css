@@ -26,7 +26,7 @@ body {
   color: var(--green);
 }
 
-p.bold {
+span.bold {
   font-weight: bolder;
   color: var(--purple);
 }
@@ -256,6 +256,26 @@ header {
 
   em {
     font-size: 13px;
+  }
+
+  .switch input+div {
+    background: var(--bg-input-dark) !important;
+    border: 1px solid var(--bg-input-dark) !important;
+  }
+
+  .switch input:checked+div,
+  .switch:hover input:checked+div {
+    background: var(--green) !important;
+    border: 1px solid var(--green) !important;
+  }
+
+  label.switch.inline {
+    padding-top: 4px;
+  }
+
+  label.switch.inline em {
+    position: relative !important;
+    top: -3px !important;
   }
 
 @media screen and (max-width: 864px) {
