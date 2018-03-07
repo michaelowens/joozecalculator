@@ -316,4 +316,16 @@ header {
     margin-bottom: 50px;
     margin-left: 0 !important;
   }
+
+  .columns.flavorRow .sm-6 {
+    max-width: 50% !important;
+  }
+
+  .columns.flavorRow .sm-4 {
+    max-width: 35% !important;
+  }
+
+  .columns.flavorRow .sm-2 {
+    max-width: 15% !important;
+  }
 }
