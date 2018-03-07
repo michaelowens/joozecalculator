@@ -66,28 +66,6 @@
               <span>ml</span>
             </div>
             <em>The total amount of liquid you want to make</em>
-
-            <div class="radios">
-              <label>Nicotine strength in</label>
-              <label class="radio inline">
-                <input type="radio" name="nicotinemv" value="1" checked class="nicotinemv">
-                <div></div>
-                <span>Weight (mg/ml)</span>
-              </label>
-              <label class="radio inline mt-10">
-                <input type="radio" name="nicotinemv" value="2" class="nicotinemv">
-                <div></div>
-                <span>Volume (%)</span>
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="lg-3">
-        <div class="form-element">
-          <div class="sm-12">
-            <span class="bold">Nicotine &amp; Flavoring</span>
           </div>
         </div>
 
@@ -99,39 +77,66 @@
               <em>Mix your batch with nicotine?</em>
             </label>
           </div>
+
+          {{#if showNicotine}}
+            <div class="sm-12">
+              <div class="radios">
+                <label>Nicotine strength in</label>
+                <label class="radio inline">
+                  <input type="radio" name="nicotinemv" value="1" checked class="nicotinemv">
+                  <div></div>
+                  <span>Weight (mg/ml)</span>
+                </label>
+                <label class="radio inline mt-10">
+                  <input type="radio" name="nicotinemv" value="2" class="nicotinemv">
+                  <div></div>
+                  <span>Volume (%)</span>
+                </label>
+              </div>
+            </div>
+          {{/if}}
         </div>
-    {{#if showNicotine}}
+      </div>
+
+      <div class="lg-3">
         <div class="form-element">
           <div class="sm-12">
-            <label for="nicotinestr">Nicotine base strength</label>
-            <div class="form-group">
-              <input type="number"  step="any" class="form-field basenicotinestr" id="nicotinestr" value="{{state.get 'basenicotinestr'}}" style="text-align: right;">
-              <span>{{ nicotineUnits }}</span>
-            </div>
+            <span class="bold">Nicotine &amp; Flavoring</span>
           </div>
         </div>
 
-        <div class="form-element">
-          <div class="sm-12">
-            <label for="">Nicotine pg/vg ratio</label>
+        {{#if showNicotine}}
+          <div class="form-element">
+            <div class="sm-12">
+              <label for="nicotinestr">Nicotine base strength</label>
+              <div class="form-group">
+                <input type="number"  step="any" class="form-field basenicotinestr" id="nicotinestr" value="{{state.get 'basenicotinestr'}}" style="text-align: right;">
+                <span>{{ nicotineUnits }}</span>
+              </div>
+            </div>
           </div>
 
-          <div class="columns">
-            <div class="sm-6">
-              <div class="form-group">
-                <input type="text" value="100%" class="form-field" id="pg" name="pg">
-                <span>% PG</span>
-              </div>
+          <div class="form-element">
+            <div class="sm-12">
+              <label for="">Nicotine pg/vg ratio</label>
             </div>
-            <div class="sm-6">
-              <div class="form-group">
-                <input type="text" value="0%" class="form-field" id="vg" name="vg">
-                <span>% VG</span>
+
+            <div class="columns">
+              <div class="sm-6">
+                <div class="form-group">
+                  <input type="text" value="100%" class="form-field" id="pg" name="pg">
+                  <span>% PG</span>
+                </div>
+              </div>
+              <div class="sm-6">
+                <div class="form-group">
+                  <input type="text" value="0%" class="form-field" id="vg" name="vg">
+                  <span>% VG</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      {{/if}}
+        {{/if}}
       </div>
 
       <div class="lg-3">
