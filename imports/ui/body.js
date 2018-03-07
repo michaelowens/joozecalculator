@@ -23,7 +23,7 @@ Template.body.onCreated(function () {
   this.state.set('aimnicotinestr', 6)
   this.state.set('nicotinemv', 1); // Default mg/ml
   this.state.set('name', '');
-  // this.state.set('showNicotine', false);
+  this.state.set('withNicotine', false);
 })
 
 Template.recipeform.helpers({
@@ -36,7 +36,7 @@ Template.recipeform.helpers({
   },
 
   showNicotine: function() {
-    return this.state.get('showNicotine');
+    return this.state.get('withNicotine');
   },
 });
 
@@ -70,8 +70,8 @@ Template.recipeform.events({
     // Get value from form element
     const target = event.target;
     // const name = target.name.value;
-    const public = target.public.checked;
-    const nicotinemv = target.nicotinemv.value;
+    // const public = target.public.checked;
+    // const nicotinemv = target.nicotinemv.value;
     // const instance = Template.instance();
 
     // console.log('i', instance)
@@ -148,6 +148,6 @@ Template.recipeform.events({
   },
 
   'change .withNicotine'(event) {
-    this.state.set('showNicotine', event.target.checked)
+    this.state.set('withNicotine', event.target.checked)
   }
 });
