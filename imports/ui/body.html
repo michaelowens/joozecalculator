@@ -72,12 +72,12 @@
             <div class="radios">
               <label>Nicotine strength in</label>
               <label class="radio inline">
-                <input type="radio" name="radio2" value="1" checked>
+                <input type="radio" name="nicotinemv" value="1" checked class="nicotinemv">
                 <div></div>
                 <span>Weight (mg/ml)</span>
               </label>
               <label class="radio inline mt-10">
-                <input type="radio" name="radio2" value="2">
+                <input type="radio" name="nicotinemv" value="2" class="nicotinemv">
                 <div></div>
                 <span>Volume (%)</span>
               </label>
@@ -95,8 +95,8 @@
           <div class="sm-12">
             <label for="nicotinestr">Nicotine base strength</label>
             <div class="form-group">
-              <input type="number" class="form-field" value="18" id="nicotinestr">
-              <span>mg/ml</span>
+              <input type="number" class="form-field basenicotinestr" id="nicotinestr" value="{{instance.localData.get 'basenicotinestr'}}">
+              <span>{{ nicotineUnits }}</span>
             </div>
           </div>
         </div>
@@ -131,8 +131,8 @@
           <div class="sm-12">
             <label for="nicotinestrtotal">Nicotine strength</label>
             <div class="form-group">
-              <input type="number" class="form-field" value="6" id="nicotinestr">
-              <span>mg/ml</span>
+              <input type="number" class="form-field aimnicotinestr" id="nicotinestr2" value="{{instance.localData.get 'aimnicotinestr'}}">
+              <span>{{ nicotineUnits }}</span>
             </div>
           </div>
         </div>
