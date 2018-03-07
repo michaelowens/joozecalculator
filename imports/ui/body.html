@@ -118,7 +118,7 @@
 
           <div class="form-element">
             <div class="sm-12">
-              <label for="">Nicotine pg/vg ratio</label>
+              <label>Nicotine pg/vg ratio</label>
             </div>
 
             <div class="columns">
@@ -137,6 +137,23 @@
             </div>
           </div>
         {{/if}}
+
+        <div class="form-element">
+          <div class="columns">
+            <div class="sm-6">Flavor</div>
+            <div class="sm-4">Percentage</div>
+          </div>
+          <div class="spacer"></div>
+
+          <div class="columns flavorRow">
+            <div class="sm-6"><input type="text" class="form-field" placeholder="Flavor name"></div>
+            <div class="sm-4"><input type="number" step="any" class="form-field" placeholder="0" style="text-align: right;"></div>
+            <div class="sm-2"><span class="removeFlavor">&times;</span></div>
+            <div class="spacer"></div>
+          </div>
+
+          <div class="sm-12"><a href="#" class="green addFlavor">Add extra flavor &plus;</a></div>
+        </div>
       </div>
 
       <div class="lg-3">
@@ -160,7 +177,7 @@
 
         <div class="form-element">
           <div class="sm-12">
-            <label for="">Batch pg/vg ratio</label>
+            <label>Batch pg/vg ratio</label>
           </div>
 
           <div class="columns">
@@ -180,7 +197,12 @@
         </div>
       </div>
       <div class="lg-3">
-        <span class="bold">Recipe outcome</span>
+        <div class="form-element">
+          <div class="sm-12">
+            <span class="bold">Recipe outcome</span>
+          </div>
+        </div>
+
         <table>
           <tr>
             <th>Add</th>
@@ -203,7 +225,7 @@
             <td>1</td>
           </tr>
           <tr>
-            <td>Flavourname</td>
+            <td>Flavor name</td>
             <td>1</td>
             <td>1.1</td>
           </tr>

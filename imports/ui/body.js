@@ -149,5 +149,15 @@ Template.recipeform.events({
 
   'change .withNicotine'(event) {
     this.state.set('withNicotine', event.target.checked)
+  },
+
+  'click .addFlavor'(event) {
+    // Add new row flavor
+    console.log('add flavor')
+  },
+
+  'click .removeFlavor'(event) {
+    // Remove clicked flavor
+    console.log('remove flavor')
   }
 });
