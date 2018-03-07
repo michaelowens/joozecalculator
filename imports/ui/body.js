@@ -8,19 +8,21 @@ import { Recipes } from '../api/recipes.js';
 import './body.html';
 
 let formErrors = new ReactiveVar([]);
-let localData = new ReactiveDict({
-  nicotinemv: 1 // Default mg/ml
-});
+function calculateOutcome() {
+  let instance = Template.instance();
+}
 
 Template.registerHelper('instance', function () {
   return Template.instance();
 });
 
-Template.recipeform.onCreated(function () {
-  this.localData = new ReactiveDict()
-  this.localData.set('basenicotinestr', 18)
-  this.localData.set('aimnicotinestr', 6)
-  this.localData.set('nicotinemv', 1); // Default mg/ml
+Template.body.onCreated(function () {
+  this.state = new ReactiveDict()
+  this.state.set('batch', 10)
+  this.state.set('basenicotinestr', 18)
+  this.state.set('aimnicotinestr', 6)
+  this.state.set('nicotinemv', 1); // Default mg/ml
+  this.state.set('name', '');
 })
 
 Template.recipeform.helpers({
@@ -29,8 +31,7 @@ Template.recipeform.helpers({
   },
 
   nicotineUnits() {
-    console.log('get units', Template.instance().localData.get('nicotinemv'))
-    return Template.instance().localData.get('nicotinemv') === 2 ? '%' : 'mg/ml'
+    return this.state.get('nicotinemv') === 2 ? '%' : 'mg/ml'
   }
 });
 
@@ -44,7 +45,15 @@ Template.recipebook.helpers({
 
 Template.recipebook.events({
   'click .delete'(event) {
-    Recipes.remove(this._id);
+    Recipes.remove(this.item._id);
+  },
+
+  'click .loadrecipe'(event, instance) {
+    // TODO: first check if form is dirty, and then ask if they are sure to load so people won't lose data
+    const keys = Object.keys(this.item)
+    keys.forEach(k => {
+      this.state.set(k, this.item[k])
+    })
   }
 });
 
@@ -55,13 +64,15 @@ Template.recipeform.events({
 
     // Get value from form element
     const target = event.target;
-    const name = target.name.value;
+    // const name = target.name.value;
     const public = target.public.checked;
     const nicotinemv = target.nicotinemv.value;
-    const instance = Template.instance();
+    // const instance = Template.instance();
+
+    // console.log('i', instance)
 
     let errors = []
-    if (!name){
+    if (!this.state.get('name')){
       errors.push('name')
     }
 
@@ -70,45 +81,64 @@ Template.recipeform.events({
       return
     }
 
-    // Insert a task into the collection
-    Recipes.insert({
-      name,
-      private: !public,
-      createdAt: new Date(), // current time
-      owner: Meteor.userId(),
-      username: Meteor.user().username,
-    });
+    let tempData = this.state.all();
+    tempData.createdAt = new Date();
+    tempData.owner = Meteor.userId();
+    tempData.username = Meteor.user().username;
+
+    // Insert a recipe into the collection
+    if ('_id' in tempData) {
+      Recipes.update({_id: tempData._id}, {$set: tempData})
+    } else {
+      Recipes.insert(tempData);
+    }
 
     // Clear form
     target.name.value = '';
   },
 
   'input .basenicotinestr'(event) {
-    console.log(event.target.value);
-    Template.instance().localData.set('basenicotinestr', parseInt(event.target.value));
+    let value = event.target.value.replace(',', '.')
+    value = parseFloat(event.target.value)
+    if (isNaN(value)) {
+      return
+    }
+    this.state.set('basenicotinestr', value);
   },
 
   'input .aimnicotinestr'(event) {
-    console.log(event.target.value);
-    Template.instance().localData.set('aimnicotinestr', parseInt(event.target.value));
+    let value = event.target.value.replace(',', '.')
+    value = parseFloat(event.target.value)
+    if (isNaN(value)) {
+      return
+    }
+    this.state.set('aimnicotinestr', value);
   },
 
   'change .nicotinemv'(event) {
-    let instance = Template.instance();
-    let val = parseInt(event.target.value);
-    console.log(event.target.value);
-    instance.localData.set('nicotinemv', val);
+    let val = parseFloat(event.target.value);
+    this.state.set('nicotinemv', val);
 
     // values go either * 10 or / 10
-    let currentStr = instance.localData.get('basenicotinestr');
-    let aimcurrentStr = instance.localData.get('aimnicotinestr');
+    let currentStr = this.state.get('basenicotinestr');
+    let aimcurrentStr = this.state.get('aimnicotinestr');
 
     if (val === 2) {
-      instance.localData.set('basenicotinestr', currentStr / 10);
-      instance.localData.set('aimnicotinestr', aimcurrentStr / 10);
+      this.state.set('basenicotinestr', (currentStr / 10).toFixed(2));
+      this.state.set('aimnicotinestr', (aimcurrentStr / 10).toFixed(2));
     } else {
-      instance.localData.set('basenicotinestr', currentStr * 10);
-      instance.localData.set('aimnicotinestr', aimcurrentStr * 10);
+      this.state.set('basenicotinestr', (currentStr * 10).toFixed(2));
+      this.state.set('aimnicotinestr', (aimcurrentStr * 10).toFixed(2));
     }
   },
+
+  'input .batch'(event) {
+    let val = parseFloat(event.target.value);
+    this.state.set('batch', val);
+    calculateOutcome();
+  },
+
+  'input .recipename'(event) {
+    this.state.set('name', event.target.value);
+  }
 });

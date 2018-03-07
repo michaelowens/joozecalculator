@@ -2,9 +2,9 @@
   {{> header}}
   {{> hello}}
 
-  {{> recipeform}}
+  {{> recipeform state=instance.state}}
 
-  {{> recipebook}}
+  {{> recipebook state=instance.state}}
 </body>
 
 <template name="header">
@@ -30,13 +30,6 @@
   <li>Name: {{name}}</li>
 </template>
 
-<template name="recipe">
-  <tr>
-    <td>{{name}}</td>
-    <td style="text-align: right;"><a href="#">load recipe</a> &nbsp; <a href="#" class="delete">remove</a></td>
-  </tr>
-</template>
-
 <template name="recipeform">
   <form class="horizontal new-recipe">
     <div class="columns">
@@ -48,7 +41,7 @@
 
           <div class="sm-12">
             <label for="nameh">Recipe name</label>
-            <input type="text" name="name" class="form-field {{checkError 'name'}}" id="nameh">
+            <input type="text" name="name" class="form-field {{checkError 'name'}} recipename" id="nameh" placeholder="Fizzy Shizzy placeholder" value="{{state.get 'name'}}">
           </div>
         </div>
 
@@ -66,7 +59,10 @@
         <div class="form-element">
           <div class="sm-12">
             <label for="batch">Batch</label>
-            <input type="number" class="form-field" name="batch" id="batch" value="10">
+            <div class="form-group">
+              <input type="number" class="form-field batch" name="batch" id="batch" value="{{state.get 'batch'}}">
+              <span>ml</span>
+            </div>
             <em>The total amount of liquid you want to make</em>
 
             <div class="radios">
@@ -95,7 +91,7 @@
           <div class="sm-12">
             <label for="nicotinestr">Nicotine base strength</label>
             <div class="form-group">
-              <input type="number" class="form-field basenicotinestr" id="nicotinestr" value="{{instance.localData.get 'basenicotinestr'}}">
+              <input type="number"  step="any" class="form-field basenicotinestr" id="nicotinestr" value="{{state.get 'basenicotinestr'}}" style="text-align: right;">
               <span>{{ nicotineUnits }}</span>
             </div>
           </div>
@@ -109,13 +105,13 @@
           <div class="columns">
             <div class="sm-6">
               <div class="form-group">
-                <input type="text" value="50%" class="form-field" id="pg" name="pg">
+                <input type="text" value="100%" class="form-field" id="pg" name="pg">
                 <span>% PG</span>
               </div>
             </div>
             <div class="sm-6">
               <div class="form-group">
-                <input type="text" value="50%" class="form-field" id="vg" name="vg">
+                <input type="text" value="0%" class="form-field" id="vg" name="vg">
                 <span>% VG</span>
               </div>
             </div>
@@ -131,7 +127,7 @@
           <div class="sm-12">
             <label for="nicotinestrtotal">Nicotine strength</label>
             <div class="form-group">
-              <input type="number" class="form-field aimnicotinestr" id="nicotinestr2" value="{{instance.localData.get 'aimnicotinestr'}}">
+              <input type="number" step="any" class="form-field aimnicotinestr" id="nicotinestr2" value="{{state.get 'aimnicotinestr'}}" style="text-align: right;">
               <span>{{ nicotineUnits }}</span>
             </div>
           </div>
@@ -177,7 +173,7 @@
             <td>5.31</td>
           </tr>
           <tr>
-            <td>Nicotine</td>
+            <td>VG</td>
             <td>5</td>
             <td>1</td>
           </tr>
@@ -188,7 +184,7 @@
           </tr>
           <tr>
             <td class="green"><strong>SUM</strong></td>
-            <td class="green"><strong>10</strong></td>
+            <td class="green"><strong>{{state.get 'batch'}}</strong></td>
             <td class="green"><strong>11.03</strong></td>
           </tr>
         </table>
@@ -209,10 +205,17 @@
         <tr>
           <th colspan="2">Your recipes</th>
         </tr>
-        {{#each recipes}}
-          {{> recipe}}
+        {{#each item in recipes}}
+          {{> recipe item=item state=state}}
         {{/each}}
       </table>
     </div>
   </div>
+</template>
+
+<template name="recipe">
+  <tr>
+    <td>{{item.name}}</td>
+    <td style="text-align: right;"><a href="#" class="loadrecipe">load recipe</a> &nbsp; <a href="#" class="delete">remove</a></td>
+  </tr>
 </template>
