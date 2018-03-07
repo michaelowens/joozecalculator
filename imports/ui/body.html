@@ -124,13 +124,13 @@
             <div class="columns">
               <div class="sm-6">
                 <div class="form-group">
-                  <input type="text" value="100%" class="form-field" id="pg" name="pg">
+                  <input type="number" value="100" class="form-field" id="pg" name="pg" style="text-align: right;">
                   <span>% PG</span>
                 </div>
               </div>
               <div class="sm-6">
                 <div class="form-group">
-                  <input type="text" value="0%" class="form-field" id="vg" name="vg">
+                  <input type="number" value="0" class="form-field" id="vg" name="vg" style="text-align: right;">
                   <span>% VG</span>
                 </div>
               </div>
@@ -183,13 +183,13 @@
           <div class="columns">
             <div class="sm-6">
               <div class="form-group">
-                <input type="text" value="50%" class="form-field" id="bpg" name="bpg">
+                <input type="number" value="50" class="form-field" id="bpg" name="bpg" style="text-align: right;">
                 <span>% PG</span>
               </div>
             </div>
             <div class="sm-6">
               <div class="form-group">
-                <input type="text" value="50%"  class="form-field" id="bvg" name="bvg">
+                <input type="number" value="50"  class="form-field" id="bvg" name="bvg" style="text-align: right;">
                 <span>% VG</span>
               </div>
             </div>
@@ -237,7 +237,8 @@
         </table>
 
         {{#if currentUser}}
-          <input type="submit" class="btn mt-10" value="Save Recipe">
+          <div class="spacer"></div>
+          <input type="submit" class="btn" value="Save Recipe">
         {{/if}}
 
       </div>
