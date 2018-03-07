@@ -110,7 +110,7 @@
             <div class="sm-12">
               <label for="nicotinestr">Nicotine base strength</label>
               <div class="form-group">
-                <input type="number"  step="any" class="form-field basenicotinestr" id="nicotinestr" value="{{state.get 'basenicotinestr'}}" style="text-align: right;">
+                <input type="number" min="0" max="200" step="any" class="form-field basenicotinestr" id="nicotinestr" value="{{state.get 'basenicotinestr'}}" style="text-align: right;">
                 <span>{{ nicotineUnits }}</span>
               </div>
             </div>
@@ -124,13 +124,13 @@
             <div class="columns">
               <div class="sm-6">
                 <div class="form-group">
-                  <input type="number" value="100" class="form-field" id="pg" name="pg" style="text-align: right;">
+                  <input type="number" value="100" min="0" max="100" class="form-field" id="pg" name="pg" style="text-align: right;">
                   <span>% PG</span>
                 </div>
               </div>
               <div class="sm-6">
                 <div class="form-group">
-                  <input type="number" value="0" class="form-field" id="vg" name="vg" style="text-align: right;">
+                  <input type="number" value="0" min="0" max="100" class="form-field" id="vg" name="vg" style="text-align: right;">
                   <span>% VG</span>
                 </div>
               </div>
@@ -149,7 +149,7 @@
         <div class="form-element">
           <div class="columns flavorRow">
             <div class="sm-6"><input type="text" class="form-field" placeholder="Flavor name"></div>
-            <div class="sm-4"><input type="number" step="any" class="form-field" placeholder="0" style="text-align: right;"></div>
+            <div class="sm-4"><input type="number" min="0" max="100" step="any" class="form-field" placeholder="0" style="text-align: right;"></div>
             <div class="sm-2"><span class="removeFlavor">&times;</span></div>
             <div class="spacer"></div>
           </div>
@@ -170,7 +170,7 @@
             <div class="sm-12">
               <label for="nicotinestrtotal">Nicotine strength</label>
               <div class="form-group">
-                <input type="number" step="any" class="form-field aimnicotinestr" id="nicotinestr2" value="{{state.get 'aimnicotinestr'}}" style="text-align: right;">
+                <input type="number" min="0" max="45" step="any" class="form-field aimnicotinestr" id="nicotinestr2" value="{{state.get 'aimnicotinestr'}}" style="text-align: right;">
                 <span>{{ nicotineUnits }}</span>
               </div>
             </div>
@@ -185,13 +185,13 @@
           <div class="columns">
             <div class="sm-6">
               <div class="form-group">
-                <input type="number" value="50" class="form-field" id="bpg" name="bpg" style="text-align: right;">
+                <input type="number" min="0" max="100" value="50" class="form-field" id="bpg" name="bpg" style="text-align: right;">
                 <span>% PG</span>
               </div>
             </div>
             <div class="sm-6">
               <div class="form-group">
-                <input type="number" value="50"  class="form-field" id="bvg" name="bvg" style="text-align: right;">
+                <input type="number" min="0" max="100" value="50"  class="form-field" id="bvg" name="bvg" style="text-align: right;">
                 <span>% VG</span>
               </div>
             </div>
