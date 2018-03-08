@@ -18,13 +18,18 @@ Template.registerHelper('instance', function () {
 
 Template.body.onCreated(function () {
   this.state = new ReactiveDict()
-  this.state.set('batch', 10)
-  this.state.set('basenicotinestr', 18)
-  this.state.set('aimnicotinestr', 6)
-  this.state.set('nicotinemv', 1); // Default mg/ml
-  this.state.set('name', '');
-  this.state.set('withNicotine', false);
-})
+  stateDefaults(this.state)
+});
+
+// Set default states
+function stateDefaults(state) {
+  state.setDefault('batch', 10)
+  state.setDefault('basenicotinestr', 18)
+  state.setDefault('aimnicotinestr', 6)
+  state.setDefault('nicotinemv', 1); // Default mg/ml
+  state.setDefault('name', '');
+  state.setDefault('withNicotine', false);
+}
 
 Template.recipeform.helpers({
   checkError(field) {
@@ -173,5 +178,11 @@ Template.recipeform.events({
 
   'click .setDefault'(event) {
     event.preventDefault();
+  },
+
+  'click .clearRecipe'(event) {
+    console.log(this.state)
+    this.state.clear();
+    stateDefaults(this.state)
   }
 });
