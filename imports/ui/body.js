@@ -38,6 +38,14 @@ Template.recipeform.helpers({
   showNicotine: function() {
     return this.state.get('withNicotine');
   },
+
+  saveText() {
+    return this.state.get('_id') ? 'Update recipe' : 'Save recipe'
+  },
+
+  isRecipeUpdate() {
+    return this.state.get('_id') != undefined
+  }
 });
 
 Template.recipebook.helpers({
@@ -50,10 +58,12 @@ Template.recipebook.helpers({
 
 Template.recipebook.events({
   'click .delete'(event) {
+    event.preventDefault();
     Recipes.remove(this.item._id);
   },
 
   'click .loadrecipe'(event, instance) {
+    event.preventDefault();
     // TODO: first check if form is dirty, and then ask if they are sure to load so people won't lose data
     const keys = Object.keys(this.item)
     keys.forEach(k => {
@@ -159,5 +169,9 @@ Template.recipeform.events({
   'click .removeFlavor'(event) {
     // Remove clicked flavor
     console.log('remove flavor')
+  },
+
+  'click .setDefault'(event) {
+    event.preventDefault();
   }
 });

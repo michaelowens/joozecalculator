@@ -28,6 +28,16 @@ body {
   height: 10px;
 }
 
+.grey {
+  color: var(--text) !important;
+  transition: color .2s;
+}
+
+.grey:hover {
+  color: var(--green) !important;
+  transition: color .2s;
+}
+
 .green {
   color: var(--green);
 }

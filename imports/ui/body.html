@@ -240,7 +240,10 @@
 
         {{#if currentUser}}
           <div class="spacer"></div>
-          <input type="submit" class="btn" value="Save Recipe">
+          <input type="submit" class="btn" value="{{ saveText }}">
+          {{#if isRecipeUpdate}}
+            <a href="#" class="grey setDefault" style="float: right; margin-top: 7px; text-decoration: underline;"><em>save as new recipe</em></a>
+          {{/if}}
         {{/if}}
 
       </div>
