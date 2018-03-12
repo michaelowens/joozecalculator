@@ -207,13 +207,13 @@
           <div class="columns">
             <div class="sm-6">
               <div class="form-group">
-                <input type="number" min="0" max="100" value="50" class="form-field" id="bpg" name="bpg" style="text-align: right;">
+                <input type="number" min="0" max="100" value="{{ state.get 'pg' }}" class="form-field aimPg" id="bpg" name="bpg" style="text-align: right;">
                 <span>% PG</span>
               </div>
             </div>
             <div class="sm-6">
               <div class="form-group">
-                <input type="number" min="0" max="100" value="50"  class="form-field" id="bvg" name="bvg" style="text-align: right;">
+                <input type="number" min="0" max="100" value="{{ state.get 'vg' }}"  class="form-field aimVg" id="bvg" name="bvg" style="text-align: right;">
                 <span>% VG</span>
               </div>
             </div>
@@ -240,12 +240,12 @@
           </tr>
           <tr>
             <td>PG</td>
-            <td>3.5</td>
+            <td>{{ mlFromBatchWithoutFlavors (state.get 'pg') }}</td>
             <td>5.31</td>
           </tr>
           <tr>
             <td>VG</td>
-            <td>5</td>
+            <td>{{ mlFromBatchWithoutFlavors (state.get 'vg') }}</td>
             <td>1</td>
           </tr>
           {{#each item in getFlavors}}

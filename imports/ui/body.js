@@ -27,6 +27,32 @@ Template.registerHelper('equals', function (a, b) {
   return a === b;
 });
 
+Template.registerHelper('indexToHumanNumber', function(i) {
+  return i + 1;
+});
+
+Template.registerHelper('mlFromBatch', function(p) {
+  let batch = this.state.get('batch')
+  return (batch / 100 * p).toFixed(2);
+});
+
+Template.registerHelper('mgFromBatch', function(p) {
+  let batch = this.state.get('batch')
+  let ml = (batch / 100 * p).toFixed(2);
+  return (ml * 1.06).toFixed(2);
+});
+
+Template.registerHelper('mlFromBatchWithoutFlavors', function(p) {
+  let batch = this.state.get('batch')
+  const reducer = (accumulator, flavor) => {
+    let ml = (batch / 100 * flavor.percentage);
+    return accumulator + ml;
+  }
+  let flavorsMl = flavors.get().reduce(reducer, 0);
+
+  return ((batch - flavorsMl) / 100 * p).toFixed(2);
+});
+
 Template.body.onCreated(function () {
   this.state = new ReactiveDict()
   stateDefaults(this.state)
@@ -40,6 +66,8 @@ function stateDefaults(state) {
   state.setDefault('nicotinemv', 1); // Default mg/ml
   state.setDefault('name', '');
   state.setDefault('withNicotine', false);
+  state.setDefault('pg', 30);
+  state.setDefault('vg', 70);
 }
 
 // Density values
@@ -231,6 +259,16 @@ Template.recipeform.events({
     this.state.clear();
     stateDefaults(this.state)
     flavors.set([{name: '', percentage: 0}]);
+  },
+
+  'input .aimPg'(event) {
+    this.state.set('pg', event.target.value);
+    this.state.set('vg', 100 - event.target.value);
+  },
+
+  'input .aimVg'(event) {
+    this.state.set('vg', event.target.value);
+    this.state.set('pg', 100 - event.target.value);
   }
 });
 
@@ -242,28 +280,12 @@ Template.flavorRow.events({
     newFlavors[index].name = event.target.value;
     flavors.set(newFlavors);
   },
+
   'input .flavorPercentage'(event) {
     let newFlavors = flavors.get();
     let index = parseInt(event.target.getAttribute('data-index'));
 
-    newFlavors[index].percentage = event.target.value;
+    newFlavors[index].percentage = parseFloat(event.target.value);
     flavors.set(newFlavors);
-  }
-});
-
-Template.sumFlavorRow.helpers({
-  indexToHumanNumber(i) {
-    return i + 1;
-  },
-
-  mlFromBatch(p) {
-    let batch = this.state.get('batch')
-    return (batch / 100 * p).toFixed(2);
-  },
-
-  mgFromBatch(p) {
-    let batch = this.state.get('batch')
-    let ml = (batch / 100 * p).toFixed(2);
-    return (ml * 1.06).toFixed(2);
   }
 });
