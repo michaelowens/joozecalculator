@@ -30,6 +30,31 @@
   <li>Name: {{name}}</li>
 </template>
 
+<template name="flavorRow">
+  <div class="columns">
+    <div class="sm-6"><input type="text" class="form-field flavorName" data-index="{{ index }}" placeholder="Flavor name" value="{{ item.name }}"></div>
+    <div class="sm-4"><input type="number" min="0" max="100" step="any" class="form-field flavorPercentage" placeholder="0" value="{{ item.percentage }}" data-index="{{ index }}" style="text-align: right;"></div>
+    {{#if index}}
+      <div class="sm-2"><span class="removeFlavor" data-index="{{ index }}">&times;</span></div>
+    {{/if}}
+    <div class="spacer"></div>
+  </div>
+</template>
+
+<template name="sumFlavorRow">
+  <tr>
+    <td>
+      {{#if equals item.name ''}}
+        Flavor {{ indexToHumanNumber index }}
+      {{else}}
+        {{ item.name }}
+      {{/if}}
+    </td>
+    <td>{{ mlFromBatch item.percentage }}</td>
+    <td>{{ mgFromBatch item.percentage}}</td>
+  </tr>
+</template>
+
 <template name="recipeform">
   <form class="horizontal new-recipe">
     <div class="columns">
@@ -148,13 +173,9 @@
         </div>
 
         <div class="form-element">
-          <div class="columns flavorRow">
-            <div class="sm-6"><input type="text" class="form-field" placeholder="Flavor name"></div>
-            <div class="sm-4"><input type="number" min="0" max="100" step="any" class="form-field" placeholder="0" style="text-align: right;"></div>
-            <div class="sm-2"><span class="removeFlavor">&times;</span></div>
-            <div class="spacer"></div>
-          </div>
-
+          {{#each item in getFlavors}}
+            {{> flavorRow index=@index item=item state=state}}
+          {{/each}}
           <div class="sm-12"><a href="#" class="green addFlavor">Add extra flavor &plus;</a></div>
         </div>
       </div>
@@ -227,11 +248,9 @@
             <td>5</td>
             <td>1</td>
           </tr>
-          <tr>
-            <td>Flavor name</td>
-            <td>1</td>
-            <td>1.1</td>
-          </tr>
+          {{#each item in getFlavors}}
+            {{> sumFlavorRow index=@index item=item state=state}}
+          {{/each}}
           <tr>
             <td class="green"><strong>SUM</strong></td>
             <td class="green"><strong>{{state.get 'batch'}}</strong></td>

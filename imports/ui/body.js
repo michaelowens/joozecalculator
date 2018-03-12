@@ -8,12 +8,23 @@ import { Recipes } from '../api/recipes.js';
 import './body.html';
 
 let formErrors = new ReactiveVar([]);
+let flavors = new ReactiveVar([
+  {
+    name: '',
+    percentage: 0
+  },
+]);
+
 function calculateOutcome() {
   let instance = Template.instance();
 }
 
 Template.registerHelper('instance', function () {
   return Template.instance();
+});
+
+Template.registerHelper('equals', function (a, b) {
+  return a === b;
 });
 
 Template.body.onCreated(function () {
@@ -30,6 +41,13 @@ function stateDefaults(state) {
   state.setDefault('name', '');
   state.setDefault('withNicotine', false);
 }
+
+// Density values
+// u.pg=1.0373;
+// u.vg=1.2613;
+// u.nic=1.00925;
+// u.water=0.9982;
+// u.flavor=1.06;
 
 Template.recipeform.helpers({
   checkError(field) {
@@ -50,7 +68,11 @@ Template.recipeform.helpers({
 
   isRecipeUpdate() {
     return this.state.get('_id') != undefined
-  }
+  },
+
+  getFlavors() {
+    return flavors.get();
+  },
 });
 
 Template.recipebook.helpers({
@@ -69,12 +91,24 @@ Template.recipebook.events({
 
   'click .loadrecipe'(event, instance) {
     event.preventDefault();
+    this.state.clear();
+    stateDefaults(this.state)
+    flavors.set([]);
+
     // TODO: first check if form is dirty, and then ask if they are sure to load so people won't lose data
     const keys = Object.keys(this.item)
     keys.forEach(k => {
-      this.state.set(k, this.item[k])
-    })
-  }
+      if(k === 'flavors') {
+        flavors.set(this.item[k])
+      } else {
+        this.state.set(k, this.item[k])
+      }
+    });
+
+    if(!flavors.get().length) {
+      flavors.set([{name: '', percentage: 0}]);
+    }
+  },
 });
 
 Template.recipeform.events({
@@ -105,6 +139,7 @@ Template.recipeform.events({
     tempData.createdAt = new Date();
     tempData.owner = Meteor.userId();
     tempData.username = Meteor.user().username;
+    tempData.flavors = flavors.get();
 
     // Insert a recipe into the collection
     if ('_id' in tempData) {
@@ -167,13 +202,25 @@ Template.recipeform.events({
   },
 
   'click .addFlavor'(event) {
-    // Add new row flavor
-    console.log('add flavor')
+    event.preventDefault();
+    let newFlavors = flavors.get();
+
+    newFlavors.push({
+      name: '',
+      percentage: 0
+    });
+
+    flavors.set(newFlavors);
   },
 
   'click .removeFlavor'(event) {
-    // Remove clicked flavor
-    console.log('remove flavor')
+    event.preventDefault();
+
+    let newFlavors = flavors.get();
+    let start = parseInt(event.target.getAttribute('data-index'));
+
+    newFlavors.splice(start, 1);
+    flavors.set(newFlavors);
   },
 
   'click .setDefault'(event) {
@@ -181,8 +228,42 @@ Template.recipeform.events({
   },
 
   'click .clearRecipe'(event) {
-    console.log(this.state)
     this.state.clear();
     stateDefaults(this.state)
+    flavors.set([{name: '', percentage: 0}]);
+  }
+});
+
+Template.flavorRow.events({
+  'input .flavorName'(event) {
+    let newFlavors = flavors.get();
+    let index = parseInt(event.target.getAttribute('data-index'));
+
+    newFlavors[index].name = event.target.value;
+    flavors.set(newFlavors);
+  },
+  'input .flavorPercentage'(event) {
+    let newFlavors = flavors.get();
+    let index = parseInt(event.target.getAttribute('data-index'));
+
+    newFlavors[index].percentage = event.target.value;
+    flavors.set(newFlavors);
+  }
+});
+
+Template.sumFlavorRow.helpers({
+  indexToHumanNumber(i) {
+    return i + 1;
+  },
+
+  mlFromBatch(p) {
+    let batch = this.state.get('batch')
+    return (batch / 100 * p).toFixed(2);
+  },
+
+  mgFromBatch(p) {
+    let batch = this.state.get('batch')
+    let ml = (batch / 100 * p).toFixed(2);
+    return (ml * 1.06).toFixed(2);
   }
 });
