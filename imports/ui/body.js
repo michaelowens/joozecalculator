@@ -53,9 +53,52 @@ Template.registerHelper('mlFromBatchWithoutFlavors', function(p) {
   return ((batch - flavorsMl) / 100 * p).toFixed(2);
 });
 
+Template.registerHelper('pgDensity', function(p){
+  let batch = this.state.get('batch')
+  let pg = this.state.get('pg')
+  let mg = (batch / 100 * pg)
+  return density = (mg * 1.0373).toFixed(2);
+});
+
+Template.registerHelper('vgDensity', function(p){
+  let batch = this.state.get('batch')
+  let vg = this.state.get('vg')
+  let mg = (batch / 100 * vg)
+  return density = (mg * 1.2613).toFixed(2);
+});
+
+Template.registerHelper('nicotineMl', function(p) {
+  let batch = this.state.get('batch')
+  let nicBase = this.state.get('basenicotinestr')
+  let nicTarget = this.state.get('aimnicotinestr')
+  return ml = (nicTarget / (nicBase / batch)).toFixed(2);
+});
+
+Template.registerHelper('nicotineDensity', function(p) {
+  let batch = this.state.get('batch')
+  let nicBase = this.state.get('basenicotinestr')
+  let nicTarget = this.state.get('aimnicotinestr')
+  let ml = (nicTarget / (nicBase / batch)).toFixed(2);
+  return density = (ml * 1.00925).toFixed(2);
+});
+
 Template.body.onCreated(function () {
   this.state = new ReactiveDict()
   stateDefaults(this.state)
+
+  // let nomVgPercent = 0;
+  // let nomPgPercent = 100;
+  // let nonNicPercent = 100 - 1.8;
+  // let realPgPercent = nomPgPercent * (nonNicPercent/100)
+  // let targetNicVol = (this.state.get('batch') * 0.6 / 100)
+
+  // let nicBaseTotalVolume = this.state.get('aimnicotinestr') / (this.state.get('basenicotinestr') / this.state.get('batch'))
+  // let nicBaseNicVol = (0.6/100) * this.state.get('batch')
+  // let nicBasePgVol = nicBaseTotalVolume * (realPgPercent/100)
+  // let targetPgVol = (nomPgPercent/100) * (this.state.get('batch') - nicBaseNicVol)
+  // let addPgVol = (targetPgVol - nicBasePgVol)
+  // console.log(addPgVol)
+
 });
 
 // Set default states
@@ -76,6 +119,10 @@ function stateDefaults(state) {
 // u.nic=1.00925;
 // u.water=0.9982;
 // u.flavor=1.06;
+
+// Calculate nicotine ml by volume and weight = targetnic / (basenic / batch)
+// Default example =  0.6% / (1.8% / 10ml) = 3.33ml nicotine
+// Default example =  6mg / (18mg / 10ml) = 3.33ml nicotine
 
 Template.recipeform.helpers({
   checkError(field) {
@@ -146,12 +193,6 @@ Template.recipeform.events({
 
     // Get value from form element
     const target = event.target;
-    // const name = target.name.value;
-    // const public = target.public.checked;
-    // const nicotinemv = target.nicotinemv.value;
-    // const instance = Template.instance();
-
-    // console.log('i', instance)
 
     let errors = []
     if (!this.state.get('name')){

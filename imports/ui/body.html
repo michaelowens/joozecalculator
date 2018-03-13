@@ -233,20 +233,22 @@
             <th>ml</th>
             <th>g</th>
           </tr>
-          <tr>
-            <td>Nicotine</td>
-            <td>0.5</td>
-            <td>1</td>
-          </tr>
+          {{#if showNicotine}}
+            <tr>
+              <td>Nicotine</td>
+              <td>{{ nicotineMl }}</td>
+              <td>{{ nicotineDensity }}</td>
+            </tr>
+          {{/if}}
           <tr>
             <td>PG</td>
             <td>{{ mlFromBatchWithoutFlavors (state.get 'pg') }}</td>
-            <td>5.31</td>
+            <td>{{ pgDensity (state.get 'pg') }}</td>
           </tr>
           <tr>
             <td>VG</td>
             <td>{{ mlFromBatchWithoutFlavors (state.get 'vg') }}</td>
-            <td>1</td>
+            <td>{{ vgDensity (state.get 'vg') }}</td>
           </tr>
           {{#each item in getFlavors}}
             {{> sumFlavorRow index=@index item=item state=state}}
