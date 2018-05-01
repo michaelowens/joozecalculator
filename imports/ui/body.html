@@ -142,7 +142,7 @@
             </div>
           </div>
 
-          <div class="form-element">
+<!--           <div class="form-element">
             <div class="sm-12">
               <label>Nicotine pg/vg ratio</label>
             </div>
@@ -161,7 +161,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         {{/if}}
 
         <div class="form-element">
@@ -242,12 +242,12 @@
           {{/if}}
           <tr>
             <td>PG</td>
-            <td>{{ mlFromBatchWithoutFlavors (state.get 'pg') }}</td>
+            <td>{{ mlFromBatchWithoutFlavorsPg (state.get 'pg') }}</td>
             <td>{{ pgDensity (state.get 'pg') }}</td>
           </tr>
           <tr>
             <td>VG</td>
-            <td>{{ mlFromBatchWithoutFlavors (state.get 'vg') }}</td>
+            <td>{{ mlFromBatchWithoutFlavorsVg (state.get 'vg') }}</td>
             <td>{{ vgDensity (state.get 'vg') }}</td>
           </tr>
           {{#each item in getFlavors}}
@@ -255,7 +255,7 @@
           {{/each}}
           <tr>
             <td class="green"><strong>SUM</strong></td>
-            <td class="green"><strong>{{state.get 'batch'}}</strong></td>
+            <td class="green"><strong>{{sum}}</strong></td>
             <td class="green"><strong>11.03</strong></td>
           </tr>
         </table>

@@ -42,15 +42,46 @@ Template.registerHelper('mgFromBatch', function(p) {
   return (ml * 1.06).toFixed(2);
 });
 
-Template.registerHelper('mlFromBatchWithoutFlavors', function(p) {
+Template.registerHelper('nicotineMl', function(p) {
   let batch = this.state.get('batch')
+  let nicBase = this.state.get('basenicotinestr')
+  let nicTarget = this.state.get('aimnicotinestr')
+  let outcome = (nicTarget / (nicBase / batch)).toFixed(2);
+  this.state.set('nicotineAmount', outcome);
+  return outcome
+});
+
+Template.registerHelper('mlFromBatchWithoutFlavorsPg', function(p) {
+  let batch = this.state.get('batch')
+
   const reducer = (accumulator, flavor) => {
     let ml = (batch / 100 * flavor.percentage);
     return accumulator + ml;
   }
-  let flavorsMl = flavors.get().reduce(reducer, 0);
 
-  return ((batch - flavorsMl) / 100 * p).toFixed(2);
+  let flavorsMl = flavors.get().reduce(reducer, 0);
+  let outcome = ((batch - flavorsMl) / 100 * p).toFixed(2);
+
+  if(this.state.get('withNicotine') === true) {
+    let nicotineAmount = this.state.get('nicotineAmount');
+    let outcomeWithNic = (outcome - nicotineAmount).toFixed(2);
+    return outcomeWithNic
+  } else {
+    return outcome
+  }
+});
+
+Template.registerHelper('mlFromBatchWithoutFlavorsVg', function(p) {
+  let batch = this.state.get('batch')
+
+  const reducer = (accumulator, flavor) => {
+    let ml = (batch / 100 * flavor.percentage);
+    return accumulator + ml;
+  }
+
+  let flavorsMl = flavors.get().reduce(reducer, 0);
+  let outcome = ((batch - flavorsMl) / 100 * p).toFixed(2);
+  return outcome
 });
 
 Template.registerHelper('pgDensity', function(p){
@@ -67,51 +98,45 @@ Template.registerHelper('vgDensity', function(p){
   return density = (mg * 1.2613).toFixed(2);
 });
 
-Template.registerHelper('nicotineMl', function(p) {
-  let batch = this.state.get('batch')
-  let nicBase = this.state.get('basenicotinestr')
-  let nicTarget = this.state.get('aimnicotinestr')
-  return ml = (nicTarget / (nicBase / batch)).toFixed(2);
-});
-
 Template.registerHelper('nicotineDensity', function(p) {
   let batch = this.state.get('batch')
   let nicBase = this.state.get('basenicotinestr')
   let nicTarget = this.state.get('aimnicotinestr')
-  let ml = (nicTarget / (nicBase / batch)).toFixed(2);
-  return density = (ml * 1.00925).toFixed(2);
+  let ml = (nicTarget / (nicBase / batch))
+  return (batch / nicBase * (nicTarget / batch ) + (ml * 1.00925)).toFixed(2);
+  // 60/100*0,3
 });
 
 Template.body.onCreated(function () {
   this.state = new ReactiveDict()
   stateDefaults(this.state)
-
-  // let nomVgPercent = 0;
-  // let nomPgPercent = 100;
-  // let nonNicPercent = 100 - 1.8;
-  // let realPgPercent = nomPgPercent * (nonNicPercent/100)
-  // let targetNicVol = (this.state.get('batch') * 0.6 / 100)
-
-  // let nicBaseTotalVolume = this.state.get('aimnicotinestr') / (this.state.get('basenicotinestr') / this.state.get('batch'))
-  // let nicBaseNicVol = (0.6/100) * this.state.get('batch')
-  // let nicBasePgVol = nicBaseTotalVolume * (realPgPercent/100)
-  // let targetPgVol = (nomPgPercent/100) * (this.state.get('batch') - nicBaseNicVol)
-  // let addPgVol = (targetPgVol - nicBasePgVol)
-  // console.log(addPgVol)
-
 });
 
 // Set default states
 function stateDefaults(state) {
   state.setDefault('batch', 10)
-  state.setDefault('basenicotinestr', 18)
+  state.setDefault('basenicotinestr', 27)
   state.setDefault('aimnicotinestr', 6)
   state.setDefault('nicotinemv', 1); // Default mg/ml
   state.setDefault('name', '');
-  state.setDefault('withNicotine', false);
+  state.setDefault('withNicotine', true);
   state.setDefault('pg', 30);
   state.setDefault('vg', 70);
+  state.setDefault('nicotineAmount', 0)
 }
+
+// let nomVgPercent = 0;
+// let nomPgPercent = 100;
+// let nonNicPercent = 100 - 1.8;
+// let realPgPercent = nomPgPercent * (nonNicPercent/100)
+// let targetNicVol = (this.state.get('batch') * 0.6 / 100)
+
+// let nicBaseTotalVolume = this.state.get('aimnicotinestr') / (this.state.get('basenicotinestr') / this.state.get('batch'))
+// let nicBaseNicVol = (0.6/100) * this.state.get('batch')
+// let nicBasePgVol = nicBaseTotalVolume * (realPgPercent/100)
+// let targetPgVol = (nomPgPercent/100) * (this.state.get('batch') - nicBaseNicVol)
+// let addPgVol = (targetPgVol - nicBasePgVol)
+// console.log(addPgVol)
 
 // Density values
 // u.pg=1.0373;
@@ -148,6 +173,10 @@ Template.recipeform.helpers({
   getFlavors() {
     return flavors.get();
   },
+
+  sum(){
+    return this.state.get('batch')
+  }
 });
 
 Template.recipebook.helpers({
